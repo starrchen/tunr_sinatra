@@ -108,17 +108,29 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
 ### Part 1: Root Route, Home View, and Layout View
 
-1. Define a route for GET requests to the root ('/') and renders a view called home.
+1. Run your application: `ruby app.rb` and go to localhost:4567 in your browser... Sinatra doesn't know this ditty.
 
-  - First just define the route in the General Routes section of app.rb
+  - First just define the route in the General Routes section of app.rb as described by Sinatra:
+    ```ruby
+    get '/' do
+      "Hello World"
+    end
+    ```
+  Now head back to localhost:4567 and check it out!
 
-  - Run your application: `ruby app.rb`
+  - So maybe not super exciting but moving in the right direction
 
-  - Go to localhost:4567 in your browser
+  - Replace `"Hello World"` with HTML rendered from an ERB template, home. Our General Routes section of app.rb now reads:
+    ```ruby
+    get '/' do
+      erb :home
+    end
+    ```
+    Back to the browser!
 
 - Read the error and try to understand what it is saying: __No such file or directory @ rb_sysopen - /path/to/tunr_sinatra/views/home.erb__
 
-    - When you look at our working directory (__tunr_sinatra/__), there isn't even a __views/__ directory!
+    - When you look at our working directory (__tunr_sinatra/__), there is no __views/__ directory!
 
     - Make that directory and add a file home.erb.
 
@@ -136,9 +148,11 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - Take a moment to look at how the HTML rendered in from home.erb nests into the HTML rendered from layout.erb where we included `<%= yield %>`. That's pretty neat.
 
+    - Now take a minute to make the home page your own
+
 ### Part 2: Artist Controller and Views
 
-1. Make a __controllers/__ directory in __tunr_sinatra/__ and create a file __artists.rb__ which will hold our routes for our artists
+1. Make a __controllers/__ directory in __tunr_sinatra/__ and create a file __artists.rb__ which will hold the routes for your artists
 
   - We have talked about CRUD operations as covering most of what we want to do with data: Create, Read, Update, and Destroy.
 
@@ -157,3 +171,4 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
     6. Update (submit form to update existing artist) - PUT "/artists/:id"
 
     7. Destroy (delete an existing artist) - DELETE "/artists/:id"
+ 
