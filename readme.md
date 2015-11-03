@@ -101,3 +101,9 @@ In the console...
   - Using `each`, iterate over those songs and for each song, print "I like" + the song name
 
 ## Part 3 - Build a RESTful Interface using Sinatra
+
+First you wrote the schema for a database to store records of artists and their songs for a music catalog app. You then seeded the database with sample data and we were able to interact with that data (performing CRUD operations) using SQL queries in Postgresql. Next, you connected ActiveRecord to the database which enhanced your ability to interact with the data in a Ruby environment. Still, our only way to interact with the data is in a console.
+
+Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (rendered from ERB templates) in response.
+
+The first route we are going to write will handle GET requests made to the root of the app ('/'). We add this route to our _General routes_ section of our app.rb file because it is not requesting information regarding one of our models (TODO: work on this language). 
