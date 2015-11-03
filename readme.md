@@ -106,7 +106,7 @@ First you wrote the schema for a database to store records of artists and their 
 
 Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (rendered from ERB templates) in response.
 
-### Part 1: Root Route, Home View, and Layout View
+### Part 3.1: Root Route, Home View, and Layout View
 
 1. Run your application: `ruby app.rb` and go to localhost:4567 in your browser... Sinatra doesn't know this ditty.
 
@@ -150,7 +150,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - Now take a minute to make the home page your own
 
-### Part 2: Artist Controller and Views
+### Part 3.2: Artist Controller and Views
 
 1. Make a __controllers/__ directory in __tunr_sinatra/__ and create a file __artists.rb__ which will hold the routes for your artists
 
@@ -190,6 +190,14 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
     ```
   to this section.
 
-  - Checkout the browser again and see the greeting "Hello World"
+  - Checkout the browser again and see the greeting "hello world"
 
-  - Now back in our artists controller, replace the `Hello World` with `erb :artists/index`.
+- Make your __Index__ view for artists.
+
+  - Now we want to serve a more exciting response.
+
+  - In the artist index route, replace `"Hello World"` with `erb :"artists/index"`. Head back to the browser to checkout the new error.
+
+  - This is very similar to the error we saw before, but now Sinatra is looking for `/path/to/tunr_sinatra/views/artists/index.erb` so make that artists directory inside of the views directory, and create the file index.erb in the views/artists directory
+
+  - As home.erb did, the artist/index.erb template will render nested within our layout.erb template
