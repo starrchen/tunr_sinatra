@@ -156,7 +156,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
   - We have talked about CRUD operations as covering most of what we want to do with data: Create, Read, Update, and Destroy.
 
-  - You want to allow your user means to perform these four operations on the artists in your database. We will do this by defining seven routes:
+  - You want to allow your user means to perform these four operations on the artists in your database. In this section you will define seven routes for artists which allow your user to perform these actions:
 
     1. Index (index all artists) - GET "/artists"
 
@@ -171,4 +171,25 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
     6. Update (submit form to update existing artist) - PUT "/artists/:id"
 
     7. Destroy (delete an existing artist) - DELETE "/artists/:id"
- 
+
+- Make your __Index__ route for artists
+
+  - In the browser, try to follow the link to "/artists" in your nav bar. And... Sinatra doesn't know this ditty. Not shocking as you have not yet defined it.
+
+  - Instead of defining the route Sinatra suggests:
+    ```ruby
+    get "/artists" do
+      "Hello World"
+    end
+    ```
+  in our General Routes section of app.rb, we define it in our controllers/artists.rb file
+
+  - Try to follow the link again and... oh no! Why doesn't Sinatra know this ditty? There is a very helpful comment in app.rb regarding loading controllers but there is no code there! Add the line:
+    ```ruby
+    require_relative 'controllers/artists.rb'
+    ```
+  to this section.
+
+  - Checkout the browser again and see the greeting "Hello World"
+
+  - Now back in our artists controller, replace the `Hello World` with `erb :artists/index`.
