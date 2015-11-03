@@ -106,5 +106,54 @@ First you wrote the schema for a database to store records of artists and their 
 
 Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (rendered from ERB templates) in response.
 
-The first route we are going to write will handle GET requests made to the root of the app ('/'). We add this route to our _General routes_ section of our app.rb file because it is not requesting information regarding one of our models (TODO: work on this language).
-(TODO: add screenshot)
+### Part 1: Root Route, Home View, and Layout View
+
+1. Define a route for GET requests to the root ('/') and renders a view called home.
+
+  - First just define the route in the General Routes section of app.rb
+
+  - Run your application: `ruby app.rb`
+
+  - Go to localhost:4567 in your browser
+
+- Read the error and try to understand what it is saying: __No such file or directory @ rb_sysopen - /path/to/tunr_sinatra/views/home.erb__
+
+    - When you look at our working directory (__tunr_sinatra/__), there isn't even a __views/__ directory!
+
+    - Make that directory and add a file home.erb.
+
+    - In home.erb, first add a simple heading so you know that the HTML is rendering (check out localhost:4567)
+
+- Now add a layout.erb file which will be shared by all of your app's pages (in the below steps, regularly checkout localhost:4567 and reflect on the effects of your code changes)
+
+    - As always, start simple, maybe just a heading.
+
+    - Then expand adding head and body elements, layout.erb should compile into well formed HTML
+
+    - Create a __public__ directory in the root of your project. By default, Sinatra looks for static assets in a directory named __public__ in the root directory of the project. In the __public__ create a stylesheet.
+
+    - Back in layout.erb add a link to your stylesheet in the head. In the body add a nav element containing links to '/artists' and '/songs'. Finally below the nav element, add an embedded ruby expression calling `yield`.
+
+    - Take a moment to look at how the HTML rendered in from home.erb nests into the HTML rendered from layout.erb where we included `<%= yield %>`. That's pretty neat.
+
+### Part 2: Artist Controller and Views
+
+1. Make a __controllers/__ directory in __tunr_sinatra/__ and create a file __artists.rb__ which will hold our routes for our artists
+
+  - We have talked about CRUD operations as covering most of what we want to do with data: Create, Read, Update, and Destroy.
+
+  - You want to allow your user means to perform these four operations on the artists in your database. We will do this by defining seven routes:
+
+    1. Index (index all artists) - GET "/artists"
+
+    2. Show (show particular artist) - GET "/artist/:id"
+
+    3. New (render form to create new artists) - GET "/artists/new"
+
+    4. Edit (render form to edit existing artist) - GET "/artists/:id/edit"
+
+    5. Create (submit form to create new artist) - POST "/artists"
+
+    6. Update (submit form to update existing artist) - PUT "/artists/:id"
+
+    7. Destroy (delete an existing artist) - DELETE "/artists/:id"
