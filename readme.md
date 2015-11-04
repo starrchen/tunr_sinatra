@@ -133,11 +133,11 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - When we give the `erb` method an argument of `:home`, the method looks in the __views/__ directory of the project for a file named home.erb and takes the contents of that file as its template string.
 
-    - Make that __/views__ directory and add a file home.erb.
+    - Make that __views/__ directory and add a file home.erb.
 
     - In home.erb, first add some HTML (no need to worry about embedding ruby just yet) and check it out at localhost:4567
 
-- The erb method will also check for a layout.erb file where you define the part of the template shared by all the pages in our app (e.g. head/body elements, header/footer, navigation bar, etc). In layout.erb we have our first line of embedded ruby: `<%= yield %>`. This tells the method to render the named template (`:home`) at this point. In the below steps, regularly checkout localhost:4567 and reflect on the effects of your code changes
+- The erb method will also check for a layout.erb file where you define the part of the template shared by all the pages in our app (e.g. head/body elements, header/footer, navigation bar, etc). In layout.erb need to include a line of embedded ruby with the keyword `<%= yield %>`. This tells the method to render the named template (`:home`) at this point in the layout.erb template. In the below steps, regularly check out localhost:4567 and consider the effects of your code changes
 
     - Make a layout.erb file in views/
 
@@ -145,11 +145,11 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - Then expand adding head and body elements, layout.erb should produce well formed HTML and since there is no embedded ruby in it yet, it should be well formed HTML
 
-    - Create a __public__ directory in the root of your project. By default, Sinatra looks for static assets in a directory named __public__ in the root directory of the project. In the __public__ create a stylesheet.
+    - Create a __public/__ directory in the root of your project. By default, Sinatra looks for static assets in a directory named __public/__ in the root directory of the project. In the __public/__ create a stylesheet.
 
     - Back in layout.erb add a link to your stylesheet in the head. In the body add a nav element containing links to '/artists' and '/songs'. Finally below the nav element, add an embedded ruby expression calling `yield`.
 
-    - Take a moment to look at how the HTML rendered in from home.erb nests into the HTML rendered from layout.erb where we included `<%= yield %>`. That's pretty neat.
+    - Take a moment using your browser's dev tools to look at how the HTML rendered in from home.erb nests into the HTML rendered from layout.erb where we included `<%= yield %>`.
 
     - Spend a few minutes making this page look nice/pleasant -- as you keep working on the app, you're going to see it a whole bunch
 
@@ -177,30 +177,32 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
 - Make your __Index__ route for artists
 
-  - In the browser, try to follow the link to "/artists" in your nav bar. And... Sinatra doesn't know this ditty. Not shocking as you have not yet defined it.
+  - In the browser, try to follow the link to "/artists" in your nav bar. You see Sinatra doesn't know this ditty. Not shocking as you have not yet defined it.
 
-  - Instead of defining the route Sinatra suggests:
+  - While it is possible to put the "/artists" route in app.rb, it helps keeps thing organized to keep a separate file where we define all of our artist routes and then use `require_relative` to import that file. These kinds of files which handle interaction between the our models and our views are our controllers so make a __controllers/__ directory and create a file artists.rb. Put in the route Sinatra suggests
     ```ruby
     get "/artists" do
       "Hello World"
     end
     ```
-  in our General Routes section of app.rb, we define it in our controllers/artists.rb file
 
-  - Try to follow the link again and... oh no! Why doesn't Sinatra know this ditty? There is a very helpful comment in app.rb regarding loading controllers but there is no code there! Add the line:
+  - Be sure to add the following in your app.rb
     ```ruby
     require_relative 'controllers/artists.rb'
     ```
-  to this section.
 
-  - Checkout the browser again and see the greeting "hello world"
+  - Check out the browser again and see the greeting "hello world".
 
 - Make your __Index__ view for artists.
 
-  - Now we want to serve a more exciting response.
+  - Now we want to serve a better response.
 
-  -  `"Hello World"` with `erb :"artists/index"`. Head back to the browser to checkout the new error.
+  -  `"Hello World"` with `erb :"artists/index"`. Now Sinatra is looking for `/path/to/tunr_sinatra/views/artists/index.erb` (the reason we organize our views this way will become apparent as you make more). Make the artists/ directory inside of views/, and create the file index.erb in the views/artists/ directory
 
-  - This is very similar to the error we saw before, but now Sinatra is looking for `/path/to/tunr_sinatra/views/artists/index.erb` so make that artists directory inside of the views directory, and create the file index.erb in the views/artists directory
+  - Add a heading to the artists index page.
 
-  - As home.erb did, the artist/index.erb template will render nested within our layout.erb template
+  - As home.erb did, the artist/index.erb template will render nested within our layout.erb template.
+
+- Now in the controller you want to get data from the database (by means of ActiveRecord and our models) and use it to render the views (using erb).
+
+  - 
