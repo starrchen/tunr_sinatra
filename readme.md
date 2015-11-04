@@ -205,4 +205,60 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
 - Now in the controller you want to get data from the database (by means of ActiveRecord and our models) and use it to render the views (using erb).
 
-  - 
+  - In your GET /artists route add binding.pry.
+    ```ruby
+    get "/artists" do
+      binding.pry
+      erb :"artists/index"
+    end
+    ```
+
+  - Use your Artist model to get the array of all artists (like in [Part 2.3](##part-2-3) above).
+
+  - In the artist controller, where you had binding.pry, declare an instance variable referencing the array of all artists so [it can be used  in your view](https://github.com/ga-dc/curriculum/blob/master/04-ruby-mvc-sinatra/sinatra-rest/views.md#passing-variables-to-views).
+
+  - In the artist index view, [iterate over the artists names](https://github.com/ga-dc/curriculum/blob/master/04-ruby-mvc-sinatra/sinatra-rest/views.md#more-complex-ruby-with-erb)
+
+  - Check out localhost:4567/artists, pretty neat.
+
+- What pages do we want to link to on this page? Which of the seven routes described above would it make sense to have links to on this page?
+
+  - Looking at each of them:
+
+    - __Index__ of artists? Not really, already on it
+
+    - __Show__ a particular artist? It would be really nice to click an artist and see their page.
+
+    - Show a page with a form to add a __new__ artist? Would be nice if we are looking at all our artists and realize there is one we would like to add to have that form right there.
+
+    - Show a page with a form to __edit__ an existing artist? This probably makes most sense on the page for a particular artist
+
+    - POST a form to __create__ a new artist? This necessarily is going to be with the __new__ form
+
+    - PUT a form to __update__ an existing artist? Similar to above, this necessarily belongs with the edit form
+
+    - __Delete__ an artist? Like edit, this also makes sense on the page of a particular artist
+
+  - In views/artists/index.erb template a page which uses the artists array to list all of the artists and includes a link to the new artist form page.
+
+- __Creating__ new artists
+
+  - Trying to follow the links to the new artist page will lead to the same "Sinatra doesn't know this ditty" error.
+
+  - In the artist controller, define a route for GET "artists/new" and create your new page: views/artists/new.erb. The new page should have a [form which makes a POST request](https://github.com/ga-dc/curriculum/blob/master/04-ruby-mvc-sinatra/sinatra-rest/rest.md#post) to "/artists"
+
+  - Now in the artist controller when you define the route for POST "/artists", use the .create method of your Artist Model (like in [Part 2.3](##part-2-3) above) to create a record of an artist in the database using params to access the information your user posted in the form. After we create our artist, redirect to the artists index where you should see your new artist added to the list.
+
+- __Showing__ an artist
+
+  - Thinking back to our artist index page, a plain text list of the artists in the database isn't super useful, even with the very impressive ability to add to that list. What we would like to do is give each individual artist a page. ERB is going to be an enormous asset here. You can define a generic template for showing an artist and then provide the view an artist instance with which to render the form.
+
+    - The challenge here is to [take information from](https://github.com/ga-dc/curriculum/tree/master/04-ruby-mvc-sinatra/sinatra-rest#the-params-hash) the GET artists/:id and use that with ActiveRecord to retrieve the artist instance requested. Spend a little time in pry playing with these ideas.
+
+    - HTML forms only support GET and POST methods so we need to use a work-around to use our PUT and DELETE methods we need for updating and deleting artists. We create a form with `action='/artist/<id here>' method='put'` and any form elements we need but the first child of the form should be `<input type="hidden" name="_method" value="put">` or `value="delete"` for the delete route
+
+    - The form for deleting doesn't need its own page so can go on the Artist page however we should link to a new page which holds the edit form.
+
+- Finishing the routes
+
+  - Using the techniques we have covered so far, implement all of our RESTful routes for artists and create the views to be sent by them
