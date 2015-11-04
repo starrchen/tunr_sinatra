@@ -126,21 +126,24 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
       erb :home
     end
     ```
-    Back to the browser!
 
-- Read the error and try to understand what it is saying: __No such file or directory @ rb_sysopen - /path/to/tunr_sinatra/views/home.erb__
+- [erb](http://www.sinatrarb.com/intro.html#Views%20/%20Templates) is a method provided by Sinatra which uses Ruby's [ERB (Embedded RuBy)](https://en.wikipedia.org/wiki/ERuby) templating system to take a template string (text with ruby written in it) and produce an output string after evaluating the embedded ruby.
 
-    - When you look at our working directory (__tunr_sinatra/__), there is no __views/__ directory!
+- If we tried to go to localhost:4567 now, we'd get an error saying __No such file or directory @ rb_sysopen - /path/to/tunr_sinatra/views/home.erb__
 
-    - Make that directory and add a file home.erb.
+    - When we give the `erb` method an argument of `:home`, the method looks in the __views/__ directory of the project for a file named home.erb and takes the contents of that file as its template string.
 
-    - In home.erb, first add a simple heading so you know that the HTML is rendering (check out localhost:4567)
+    - Make that __/views__ directory and add a file home.erb.
 
-- Now add a layout.erb file which will be shared by all of your app's pages (in the below steps, regularly checkout localhost:4567 and reflect on the effects of your code changes)
+    - In home.erb, first add some HTML (no need to worry about embedding ruby just yet) and check it out at localhost:4567
 
-    - As always, start simple, maybe just a heading.
+- The erb method will also check for a layout.erb file where you define the part of the template shared by all the pages in our app (e.g. head/body elements, header/footer, navigation bar, etc). In layout.erb we have our first line of embedded ruby: `<%= yield %>`. This tells the method to render the named template (`:home`) at this point. In the below steps, regularly checkout localhost:4567 and reflect on the effects of your code changes
 
-    - Then expand adding head and body elements, layout.erb should compile into well formed HTML
+    - Make a layout.erb file in views/
+
+    - As always, start simple, maybe just a heading. Check it out in the browser
+
+    - Then expand adding head and body elements, layout.erb should produce well formed HTML and since there is no embedded ruby in it yet, it should be well formed HTML
 
     - Create a __public__ directory in the root of your project. By default, Sinatra looks for static assets in a directory named __public__ in the root directory of the project. In the __public__ create a stylesheet.
 
@@ -148,7 +151,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - Take a moment to look at how the HTML rendered in from home.erb nests into the HTML rendered from layout.erb where we included `<%= yield %>`. That's pretty neat.
 
-    - Now take a minute to make the home page your own
+    - Spend a few minutes making this page look nice/pleasant -- as you keep working on the app, you're going to see it a whole bunch
 
 ### Part 3.2: Artist Controller and Views
 
@@ -196,7 +199,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
   - Now we want to serve a more exciting response.
 
-  - In the artist index route, replace `"Hello World"` with `erb :"artists/index"`. Head back to the browser to checkout the new error.
+  -  `"Hello World"` with `erb :"artists/index"`. Head back to the browser to checkout the new error.
 
   - This is very similar to the error we saw before, but now Sinatra is looking for `/path/to/tunr_sinatra/views/artists/index.erb` so make that artists directory inside of the views directory, and create the file index.erb in the views/artists directory
 
