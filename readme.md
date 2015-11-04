@@ -261,4 +261,16 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
 - Finishing the routes
 
-  - Using the techniques we have covered so far, implement all of our RESTful routes for artists and create the views to be sent by them
+  - Using the techniques covered so far, you have the means implement the 7 RESTful routes discussed above for artists  and create the views for your routes to respond with (giving your user full CRUD functionality over your database!).
+
+### Part 3.3 (Bonus)
+
+- If you are comfortable, begin implementing routes for songs -- consider carefully how a user wants to access songs. Remember that CRUD and ISNECUD are more ideas than hard and fast rules and we structure our app in a way that makes sense to how it will be used.
+
+### Part 3.4 (Super bonus)
+
+- Add a whole new model of playlists to the app
+
+### Part 3.5 (You're either time-traveling or not sleeping bonus)
+
+- Add users and account management
