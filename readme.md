@@ -145,7 +145,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - Then expand adding head and body elements, layout.erb should produce well formed HTML and since there is no embedded ruby in it yet, it should be well formed HTML
 
-    - Create a __public/__ directory in the root of your project. By default, Sinatra looks for static assets in a directory named __public/__ in the root directory of the project. In the __public/__ create a stylesheet.
+    - We also want to add a stylesheet which will be shared by all of our pages. Sinatra will by default look for a particular folder for [static assets](http://www.sinatrarb.com/intro.html#Static%20Files).
 
     - Back in layout.erb add a link to your stylesheet in the head. In the body add a nav element containing links to '/artists' and '/songs'. Finally below the nav element, add an embedded ruby expression calling `yield`.
 
