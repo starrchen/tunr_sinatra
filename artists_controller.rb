@@ -35,6 +35,13 @@ put '/artists/:id' do
   redirect "/artists/" + @artist.id.to_s
 end
 
+# delete artist
+delete '/artists/:id' do
+  @artist = Artist.find(params[:id])
+  @artist.destroy
+  redirect "/artists"
+end
+
 # show artist info
 get '/artists/:id' do
   @artist = Artist.find(params[:id])
