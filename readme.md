@@ -155,11 +155,11 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
 ### Part 3.2: Artist Controller and Views
 
-1. Instead of listing all of our routes in app.rb (which one could do but it gets messy quickly), in general practice we import routes relating to a particular model from a file called a controller. As our codebase grows, we can quickly find the particular routes by looking in the correct file. Create a file __artists_controller.rb__ which will hold the routes for your artists
+1. Instead of listing all of our routes in app.rb (which one could do but it gets messy quickly), in general practice we import routes relating to a particular model from a file called a controller. As our codebase grows, we can quickly find a particular route by looking in the correct file. Create a file __artists_controller.rb__ which will hold the routes for your artists
 
   - We have talked about CRUD operations as covering most of what we want to do with data: Create, Read, Update, and Destroy.
 
-  - You want to allow your user means to perform these four operations on the artists in your database. In this section you will define seven routes for artists which allow your user to perform these actions:
+  - You want to allow your user means to perform these four operations on the artists in your database. In this section you will define seven routes for artists which allow your user to perform these actions: __Don't put these routes in yet, if you add them as you need, a workflow is produced organically__
 
     1. Index (index all artists) - GET "/artists"
 
@@ -179,7 +179,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
   - In the browser, try to follow the link to "/artists" in your nav bar. You see Sinatra doesn't know this ditty. Not shocking as you have not yet defined it.
 
-  - While it is possible to put the "/artists" route in app.rb, it helps keeps thing organized to keep a separate file where we define all of our artist routes and then use `require_relative` to import that file. These kinds of files which handle interaction between the our models and our views are our controllers so make a __controllers/__ directory and create a file artists.rb. Put in the route Sinatra suggests
+  - While it is possible to put the "/artists" route in app.rb, it helps keeps thing organized to keep a separate file where we define all of our artist routes and then use `require_relative` to import that file. These kinds of files which handle interaction between our models and our views are our controllers. Put the route Sinatra suggests in  artists_controller.rb
     ```ruby
     get "/artists" do
       "Hello World"
