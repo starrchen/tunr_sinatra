@@ -188,7 +188,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
   - Be sure to add the following in your app.rb
     ```ruby
-    require_relative 'controllers/artists.rb'
+    require_relative 'artists_controller.rb'
     ```
 
   - Check out the browser again and see the greeting "hello world".
