@@ -44,7 +44,7 @@ end
 # show artist info
 get '/artists/:id' do
   @artist = Artist.find(params[:id])
-
+  @songs = Song.where(artist_id: params[:id])
   erb :"artists/artist_id"
 end
 
@@ -52,4 +52,10 @@ end
 get '/songs' do
   @songs = Song.all
   erb :"songs/index"
+end
+
+# show song info
+get '/songs/:id' do
+  @song = Song.find(params[:id])
+  erb :"songs/song_id"
 end

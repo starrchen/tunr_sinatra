@@ -36,8 +36,16 @@ a{
   text-decoration: none;
 }
 
+a:hover{
+  color: silver;
+}
+
 .artists a{
   color: black;
+}
+
+.artists a:hover{
+  color: firebrick;
 }
 
 img{
@@ -66,13 +74,26 @@ img{
 
 .new_artist{
   margin: 0 auto;
+  padding: 5px;
   text-align: center;
   color:grey;
   background-color: gold;
   border: 1px solid grey;
-  width: 100px;
+  width: 80px;
   font-size: 12px;
 }
+
+.edit_artist{
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+  color:grey;
+  background-color: gold;
+  border: 1px solid grey;
+  width: 80px;
+  font-size: 12px;
+}
+
 
 .songs{
   overflow:auto;
@@ -83,4 +104,36 @@ img{
 
 .songs a{
   color:black;
+}
+
+.songs a:hover{
+  color: firebrick;
+}
+
+.new_song{
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+  color:grey;
+  background-color: gold;
+  border: 1px solid grey;
+  width: 80px;
+  font-size: 12px;
+}
+
+.edit_song{
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+  color:grey;
+  background-color: gold;
+  border: 1px solid grey;
+  width: 80px;
+  font-size: 12px;
+}
+
+li{
+  text-align: left;
+  margin-left: 30px;
+  line-height: 13px;
 }

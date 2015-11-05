@@ -1,0 +1,19 @@
+<!-- CREATE TABLE songs (
+  id SERIAL PRIMARY KEY,
+  title TEXT,
+  album TEXT,
+  preview_url TEXT,
+  artist_id INTEGER
+); -->
+
+<div id = "main">
+  <h2><%= @song.title %></h2>
+
+  <div class = "songs">
+    <p>
+  </div>
+
+  <a href="/songs/<%= @song.id %>/edit"><div class = "edit_song">Edit / Delete
+  </div></a>
+
+</div>

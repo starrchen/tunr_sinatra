@@ -1,18 +1,10 @@
-<!-- CREATE TABLE songs (
-  id SERIAL PRIMARY KEY,
-  title TEXT,
-  album TEXT,
-  preview_url TEXT,
-  artist_id INTEGER
-); -->
-
 <div id = "main">
 
-  <h2>♩ Songs ♩</h2>
+  <h2>♫ Songs ♫</h2>
 
   <div class = "songs" style="overflow:auto">
     <% @songs.each do |song| %>
-      <p><a href="/song/<%= song.id %>"><%= song.title %></a></p>
+      <p><a href="/songs/<%= song.id %>"><%= song.title %></a></p>
     <% end %>
   </div>
 
