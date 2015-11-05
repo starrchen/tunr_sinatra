@@ -9,7 +9,7 @@
       <p><strong>Songs:</strong></p>
       <ul>
         <% @songs.each do |song|%>
-        <li><%= song.title %></li>
+        <li><a href="../../songs/<%=song.id%>"><%= song.title %></a></li>
         <% end %>
       </ul>
     </div>
