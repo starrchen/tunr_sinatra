@@ -137,7 +137,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - In home.erb, first add some HTML (no need to worry about embedding ruby just yet) and check it out at localhost:4567
 
-- The erb method will also check for a layout.erb file where you define the part of the template shared by all the pages in our app (e.g. head/body elements, header/footer, navigation bar, etc). In layout.erb need to include a line of embedded ruby with the keyword `<%= yield %>`. This tells the method to render the named template (`:home`) at this point in the layout.erb template. In the below steps, regularly check out localhost:4567 and consider the effects of your code changes
+- The erb method will also check for [a layout.erb file](http://www.sinatrarb.com/intro.html#Templates%20with%20%3Ccode%3Eyield%3C/code%3E%20and%20nested%20layouts) where you define the part of the template shared by all the pages in our app (e.g. head/body elements, header/footer, navigation bar, etc). In layout.erb need to include a line of embedded ruby with the keyword `<%= yield %>`. This tells the method to render the named template (`:home`) at this point in the layout.erb template. In the below steps, regularly check out localhost:4567 and consider the effects of your code changes
 
     - Make a layout.erb file in views/
 
@@ -155,7 +155,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
 ### Part 3.2: Artist Controller and Views
 
-1. Make a __controllers/__ directory in __tunr_sinatra/__ and create a file __artists.rb__ which will hold the routes for your artists
+1. Instead of listing all of our routes in app.rb (which one could do but it gets messy quickly), in general practice we import routes relating to a particular model from a file called a controller. As our codebase grows, we can quickly find the particular routes by looking in the correct file. Create a file __artists_controller.rb__ which will hold the routes for your artists
 
   - We have talked about CRUD operations as covering most of what we want to do with data: Create, Read, Update, and Destroy.
 
@@ -213,7 +213,7 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
     end
     ```
 
-  - Use your Artist model to get the array of all artists (like in [Part 2.3](##part-2-3) above).
+  - Pull up the terminal when you reload the artists page to begin working in pry. Note, the page will not load until you exit pry and if you load the page multiple times, multiple pry sessions will open. Use your Artist model to get the array of all artists (like in [Part 2.3](##part-2-3) above).
 
   - In the artist controller, where you had binding.pry, declare an instance variable referencing the array of all artists so [it can be used  in your view](https://github.com/ga-dc/curriculum/blob/master/04-ruby-mvc-sinatra/sinatra-rest/views.md#passing-variables-to-views).
 
@@ -255,9 +255,14 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - The challenge here is to [take information from](https://github.com/ga-dc/curriculum/tree/master/04-ruby-mvc-sinatra/sinatra-rest#the-params-hash) the GET artists/:id and use that with ActiveRecord to retrieve the artist instance requested. Spend a little time in pry playing with these ideas.
 
-    - HTML forms only support GET and POST methods so we need to use a work-around to use our PUT and DELETE methods we need for updating and deleting artists. We create a form with `action='/artist/<id here>' method='put'` and any form elements we need but the first child of the form should be `<input type="hidden" name="_method" value="put">` or `value="delete"` for the delete route
+    - HTML forms only support GET and POST methods so we need to use a work-around to use our PUT and DELETE methods we need for updating and deleting artists. We create a form with `action='/artist/<id here>' method='put'` and any form elements we need but the first child of the form should be `<input type="hidden" name="_method" value="put">` or `value="delete"` for the delete route. In the ERB it looks like:
+      ```html
+      <form method="post" action="/artists/3">
+        <input type="hidden" name="_method" value="put">
+      </form>
+      ```
 
-    - The form for deleting doesn't need its own page so can go on the Artist page however we should link to a new page which holds the edit form.
+    - The form for deleting doesn't need its own page so can go on the Artist page. However we should link to a new page which holds the edit form.
 
 - Finishing the routes
 
@@ -269,7 +274,8 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
 ### Part 3.4 (Super bonus)
 
-- Add a whole new model of playlists to the app
+- Add a third model of playlists to the app
+- Use [Haml](haml.info) instead of ERB for templating
 
 ### Part 3.5 (You're either time-traveling or not sleeping bonus)
 
