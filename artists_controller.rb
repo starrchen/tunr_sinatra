@@ -4,7 +4,6 @@ get '/artists' do
   erb :"artists/index"
 end
 
-
 # new artist page
 get '/artists/new' do
   erb :"artists/new"
@@ -45,5 +44,12 @@ end
 # show artist info
 get '/artists/:id' do
   @artist = Artist.find(params[:id])
+
   erb :"artists/artist_id"
+end
+
+# song index
+get '/songs' do
+  @songs = Song.all
+  erb :"songs/index"
 end

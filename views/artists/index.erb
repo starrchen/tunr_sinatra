@@ -2,7 +2,7 @@
 
   <h2>♪ Artists ♪</h2>
 
-  <div class = "artists">
+  <div class = "artists" style="overflow:auto">
     <% @artists.each do |artist| %>
       <p><a href="/artists/<%= artist.id %>"><%= artist.name %></a></p>
     <% end %>
