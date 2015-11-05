@@ -1,0 +1,18 @@
+<div id = "main">
+
+  <h2>Edit info for <%= @artist.name %> </h2>
+
+  <form method="post" action="/artists/<%=@artist.id%>">
+    <input type="hidden" name="_method" value="put">
+
+    <p><label for="name">Name: </label><input type="text" value="<%= @artist.name %>" name="name"></p>
+
+    <p><label for="photo_url">Photo URL: </label><input type="text" value="<%= @artist.photo_url %>" name="photo_url"></p>
+
+    <p><label for="nationality">Nationality: </label><input type="text" value="<%= @artist.nationality %>" name="nationality"></p>
+
+    <p><input type="submit" value="Edit this  artist"></p>
+
+  </form>
+
+</div>
