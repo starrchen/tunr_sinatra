@@ -1,9 +1,14 @@
 <div id = "main">
+
   <h2>♪ Artists ♪</h2>
 
   <div class = "artists">
     <% @artists.each do |artist| %>
-      <p><%= artist.name %></p>
+      <p><a href="/artists/<%= artist.id %>"><%= artist.name %></a></p>
     <% end %>
   </div>
+
+  <a href="/new"><div class = "new_artist">Add new artist
+  </div></a>
+
 </div>
