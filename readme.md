@@ -255,7 +255,9 @@ Today, you are going to use Sinatra to listen for HTTP requests and serve HTML (
 
     - The challenge here is to [take information from](https://github.com/ga-dc/curriculum/tree/master/04-ruby-mvc-sinatra/sinatra-rest#the-params-hash) the GET artists/:id and use that with ActiveRecord to retrieve the artist instance requested. Spend a little time in pry playing with these ideas.
 
-    - HTML forms only support GET and POST methods so we need to use a work-around to use our PUT and DELETE methods we need for updating and deleting artists. We create a form with `action='/artist/<id here>' method='post'` and any form elements we need but the first child of the form should be `<input type="hidden" name="_method" value="put">` or `value="delete"` for the delete route. In the ERB it looks like:
+- __Updating__ an artist
+
+  - HTML forms only support GET and POST methods so we need to use a work-around to use our PUT and DELETE methods we need for updating and deleting artists. We create a form with `action='/artist/<id here>' method='post'` and any form elements we need but the first child of the form should be `<input type="hidden" name="_method" value="put">` or `value="delete"` for the delete route. In the ERB it looks like:
       ```html
       <form method="post" action="/artists/3">
         <input type="hidden" name="_method" value="put">
